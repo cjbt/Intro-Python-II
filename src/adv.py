@@ -1,4 +1,6 @@
+import sys
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -39,6 +41,8 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+cj = Player('Cecil John', room['outside'])
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +53,42 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+# print(cj.location.name)
+# print(type(cj.location.n_to))
+# if (cj.location.s_to == False):
+#     print('hello')
+print("Welcome to this game, btw.")
+print("So youre cj.")
+print('Directions: north, south, east, west, and if youre a quitter, type quit')
+
+while True:
+    print('==========================================')
+    print('==========================================')
+    print(
+        f'Youre currently {cj.location.name}, {cj.location.description}: What direction do you want to move to?')
+    location = input('Direction: ')
+    if location == 'quit':
+        break
+    elif location == 'north':
+        if hasattr(cj.location, 'n_to'):
+            cj.location = cj.location.n_to
+        else:
+            print('you cannot go there')
+    elif location == 'south':
+        if hasattr(cj.location, 's_to'):
+            cj.location = cj.location.s_to
+        else:
+            print('you cannot go there')
+    elif location == 'east':
+        if hasattr(cj.location, 'e_to'):
+            cj.location = cj.location.e_to
+        else:
+            print('you cannot go there')
+    elif location == 'west':
+        if hasattr(cj.location, 'w_to'):
+            cj.location = cj.location.w_to
+        else:
+            print('you cannot go there')
+    else:
+        print('you cannot go there')
