@@ -66,7 +66,7 @@ while True:
     print('==========================================')
     print('==========================================')
     print(
-        f'Youre currently {cj.location.name}, {cj.location.description}: What direction do you want to move to?')
+        f'Your location is {cj.location.name}. {cj.location.description}. What direction do you want to move to?')
     location = input('Direction: ')
     if location == 'quit':
         break
