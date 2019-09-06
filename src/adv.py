@@ -83,9 +83,9 @@ while True:
             item = [
                 i.name for i in cj.current_room.items if i.name == current_room[1]]
             # get all items
-            index = [i.name for i in cj.current_room.items]
+            all_items = [i.name for i in cj.current_room.items]
             # find current item's index
-            indexed = item.index(item[0])
+            indexed = all_items.index(item[0])
             if len(item) > 0:
                 current_item = item[0]
                 cj.inventory.append(current_item)
