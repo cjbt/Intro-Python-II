@@ -79,25 +79,28 @@ while True:
 
     if len(current_room) == 2:
         if current_room[0] == 'get' or current_room[0] == 'take':
+            # obtain chosen item
             item = [
                 i.name for i in cj.current_room.items if i.name == current_room[1]]
+            # get all items
             index = [i.name for i in cj.current_room.items]
+            # find current item's index
             indexed = item.index(item[0])
-            print(indexed)
             if len(item) > 0:
                 current_item = item[0]
                 cj.inventory.append(current_item)
+                # deleted item from specific index
                 del cj.current_room.items[indexed]
+                print(f'{current_item} obtained and added to your inentory!')
+                print(f'Inventory: {cj.inventory}')
             else:
                 print('item not found')
         else:
             print('unknown commands')
-            break
 
     if len(current_room) == 1:
         if len(current_room[0]) > 1:
             print('unknown commands')
-            break
         if current_room[0] == 'q':
             break
         elif current_room[0] == 'n':
