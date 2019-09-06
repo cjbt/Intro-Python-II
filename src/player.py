@@ -3,9 +3,10 @@
 
 
 class Player:
-    def __init__(self, name, location):
+    def __init__(self, name, current_room, inventory=[]):
         self.name = name
-        self.location = location
+        self.current_room = current_room
+        self.inventory = inventory
 
     def __str__(self):
-        return f'Player(name: {self.name}, location: {self.location})'
+        return f'Player(name: {self.name}, current_room: {self.current_room})'
