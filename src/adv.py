@@ -70,7 +70,7 @@ print('Directions: n: north, s: south, e: east, w: west, and if youre a quitter,
 print("type 'o' to see check for items around the room")
 
 while True:
-    print('==========================================')
+    print(" ")
     print('==========================================')
     print(
         f'Your current room is {cj.current_room.name}. {cj.current_room.description}. Around the room the items that are available are: {[str(i.name) for i in cj.current_room.items]}. What do you want to do or where do you want to go?')
@@ -78,6 +78,22 @@ while True:
     print('==========================================')
 
     if len(current_room) == 2:
+        if current_room[0] == 'drop':
+            # drop chosen item
+            if len(cj.inventory) == 0:
+                print('Your inventory is empty!')
+                print('There is no item to drop')
+            for item in range(0, len(cj.inventory)):
+                if current_room[1] != cj.inventory[item]:
+                    print('That item doesnt exist, try again')
+                else:
+                    print(f'{cj.inventory[item]} has been dropped')
+                    # add to the room
+
+                    cj.current_room.items.append(
+                        Item(f'{cj.inventory[item]}', ""))
+                    # remove from inventory
+                    del cj.inventory[item]
         if current_room[0] == 'get' or current_room[0] == 'take':
             # obtain chosen item
             item = [
@@ -93,29 +109,28 @@ while True:
                 del cj.current_room.items[indexed]
                 print(f'{current_item} obtained and added to your inentory!')
                 print(f'Inventory: {cj.inventory}')
-            else:
-                print('item not found')
-        else:
-            print('unknown commands')
 
     if len(current_room) == 1:
-        if len(current_room[0]) > 1:
-            print('unknown commands')
-        if current_room[0] == 'q':
+        if current_room[0] == 'drop':
+            print('Choose an item to drop')
+        elif current_room[0] == 'q':
             break
         elif current_room[0] == 'n':
             if hasattr(cj.current_room, 'n_to'):
                 cj.current_room = cj.current_room.n_to
+                print('You went North')
             else:
                 print('you cannot go there')
         elif current_room[0] == 's':
             if hasattr(cj.current_room, 's_to'):
                 cj.current_room = cj.current_room.s_to
+                print('You went South')
             else:
                 print('you cannot go there')
         elif current_room[0] == 'e':
             if hasattr(cj.current_room, 'e_to'):
                 cj.current_room = cj.current_room.e_to
+                print('You went East')
             else:
                 print('you cannot go there')
         elif current_room[0] == 'o':
@@ -125,6 +140,7 @@ while True:
         elif current_room[0] == 'w':
             if hasattr(cj.current_room, 'w_to'):
                 cj.current_room = cj.current_room.w_to
+                print('You went West')
             else:
                 print('you cannot go there')
         else:
