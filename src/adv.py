@@ -1,18 +1,10 @@
-import sys
 from room import Room
-from item import Item
-from player import Player
 
 # Declare all the rooms
 
-s = Item("sword", "It's a weapon... use it.")
-gs = Item("greatsword", "It's a bigger weapon... use it.")
-d = Item("dagger", "It's a tiny weapon... use it.")
-b = Item("boot", "Someone's boot and it's not even a pair of boots.")
-
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [s, gs, d]),
+                     "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -26,7 +18,7 @@ to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", [b]),
+earlier adventurers. The only exit is to the south."""),
 }
 
 
@@ -46,8 +38,6 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
-cj = Player('Cecil John', room['outside'], [])
 
 # Write a loop that:
 #
