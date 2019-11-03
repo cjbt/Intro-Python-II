@@ -1,10 +1,16 @@
+import sys
 from room import Room
-
+from item import Item
+from player import Player
 # Declare all the rooms
+s = Item("sword", "It's a weapon... use it.")
+gs = Item("greatsword", "It's a bigger weapon... use it.")
+d = Item("dagger", "It's a tiny weapon... use it.")
+b = Item("boot", "Someone's boot and it's not even a pair of boots.")
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", [s, gs, d]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -18,7 +24,7 @@ to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", [b]),
 }
 
 
@@ -50,6 +56,7 @@ room['treasure'].s_to = room['narrow']
 #
 # If the user enters "q", quit the game.
 
+cj = Player('Cecil John', room['outside'], [])
 # print(cj.current_room.name)
 # print(type(cj.current_room.n_to))
 # if (cj.current_room.s_to == False):
